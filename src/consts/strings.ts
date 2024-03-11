@@ -1,0 +1,1 @@
+export const name = "ဖုန်းထဲကနေမုန့်လှမ်းကျွေးတဲ့ software"
