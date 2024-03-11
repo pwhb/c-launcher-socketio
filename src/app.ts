@@ -7,7 +7,10 @@ const server = createServer(app);
 
 app.get('/', (req, res) =>
 {
-  res.send(`<h1>${name}</h1>`);
+  res.status(200).json({
+    name: name,
+    description: "backend service"
+  });
 });
 
 server.listen(3000, () =>

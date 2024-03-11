@@ -1,1 +1,1 @@
-export const name = "ဖုန်းထဲကနေမုန့်လှမ်းကျွေးတဲ့ software"
+export const name = "ဖုန်းထဲကနေလီးနဲ့လှမ်းထိုးတဲ့ software"
