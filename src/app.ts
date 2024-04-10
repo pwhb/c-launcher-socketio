@@ -1,19 +1,29 @@
-import express from 'express';
-import { createServer } from 'node:http';
-import { name } from './consts/strings';
+import dotenv from "dotenv";
+
+dotenv.config();
+
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import { name } from "./consts/strings";
+import configureSocketIO from "./socket";
+import { clientUrl, port } from "./consts/env";
 
 const app = express();
-const server = createServer(app);
 
-app.get('/', (req, res) =>
-{
-  res.status(200).json({
-    name: name,
-    description: "backend service"
-  });
-});
+app.get("/", (req, res) => res.status(200).json({
+  name: name,
+  description: "backend service"
+}));
 
-server.listen(3000, () =>
-{
-  console.log('server running at http://localhost:3000');
+const httpServer = createServer(app);
+const io = new Server(httpServer, { /* options */
+  cors: {
+    origin: clientUrl
+  }
 });
+configureSocketIO(io);
+
+
+httpServer.listen(port);
+console.info(`listening on http://localhost:${port}`);
